@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarvesh Kumar - Full Stack Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1f2937;
+            --secondary: #3b82f6;
+            --accent: #f97316;
+            --light: #f9fafb;
+            --border: #e5e7eb;
+            --text: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* Cover Banner */
+        .cover-banner {
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #7e22ce 50%, #f97316 75%, #ec4899 100%);
+            background-size: 400% 400%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: gradientShift 15s ease infinite;
+            margin-top: 60px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .cover-banner::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            left: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .cover-banner::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            right: -150px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            animation: slideInUp 1s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .banner-content h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .banner-content p {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
+        }
+
+        .banner-subtitle {
+            display: inline-block;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .banner-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .banner-btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .banner-btn-primary {
+            background: white;
+            color: #1e3c72;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .banner-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .banner-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Auth Modal Styles */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .auth-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .auth-container {
+            background: white;
+            border-radius: 1.25rem;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-auth {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .close-auth:hover {
+            color: var(--primary);
+        }
+
+        .auth-form {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .auth-form.active-form {
+            display: block;
+        }
+
+        .auth-form h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .auth-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 0.75rem 2.5rem 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="password"]:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 2.5rem;
+            font-size: 1.2rem;
+            opacity: 0.5;
+        }
+
+        .form-group.checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            accent-color: var(--secondary);
+        }
+
+        .form-group.checkbox label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .auth-btn:active {
+            transform: translateY(0);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .auth-switch a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .auth-switch a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .forgot-pwd {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .forgot-pwd a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .forgot-pwd a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .success-message {
+            background: #dcfce7;
+            color: #166534;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #22c55e;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #ef4444;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            animation: slideInLeft 0.8s ease-out 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: slideInLeft 0.8s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Technical Skills */
+        .tech-skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            border-left-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .tech-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .tech-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 2rem;
+            background: white;
+            margin-top: 3rem;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--light);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .project-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-desc {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .feature {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary), #374151);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+            cursor: pointer;
+        }
+
+        .contact-btn:hover {
+            background: transparent;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .cover-banner {
+                margin-top: 60px;
+            }
+
+            .banner-content h1 {
+                font-size: 3rem;
+            }
+
+            .banner-content p {
+                font-size: 1.3rem;
+            }
+
+            .banner-subtitle {
+                font-size: 1rem;
+            }
+
+            .banner-buttons {
+                gap: 1rem;
+            }
+
+            .banner-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .auth-container {
+                padding: 2rem;
+            }
+
+            .auth-form h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a onclick="openAuthModal('login')" style="color: var(--secondary); font-weight: 700;">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-container">
+            <button class="close-auth" onclick="closeAuthModal()">&times;</button>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form active-form">
+                <h2>Welcome Back</h2>
+                <p class="auth-subtitle">Sign in to your account</p>
+                
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" required placeholder="your@email.com">
+                        <span class="form-icon">✉️</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                        <span class="form-icon">🔒</span>
+                    </div>
+                    
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Remember me</label>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">Sign In</button>
+                </form>
+                
+                <p class="auth-switch">Don't have an account? <a onclick="switchAuthForm('signup')">Sign Up</a></p>
+                <p class="forgot-pwd"><a onclick="alert('Password reset functionality coming soon!')">Forgot password?</a></p>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signupForm" class="auth-form">
+                <h2>Join Us Today</h2>
+                <p class="auth-subtitle">Create your account to get started</p>
+                
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required placeholder="Your Name">
+                        <span class="form-icon">👤</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" required placeholder="your@email.com">
+                        <span class="form-icon">✉️</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required placeholder="••••••••">
+                        <span class="form-icon">🔒</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupConfirm">Confirm Password</label>
+                        <input type="password" id="signupConfirm" required placeholder="••••••••">
+                        <span class="form-icon">🔒</span>
+                    </div>
+                    
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <label for="agreeTerms">I agree to the Terms & Conditions</label>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">Create Account</button>
+                </form>
+                
+                <p class="auth-switch">Already have an account? <a onclick="switchAuthForm('login')">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cover Banner -->
+    <section class="cover-banner">
+        <div class="banner-content">
+            <div class="banner-subtitle">Welcome to My Portfolio</div>
+            <h1>Sarvesh Kumar</h1>
+            <p>Software Developer</p>
+            <div class="banner-buttons">
+                <a href="#hero" class="banner-btn banner-btn-primary">Explore My Work</a>
+                <button onclick="openAuthModal('login')" class="banner-btn banner-btn-secondary">Sign In</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Sarvesh Kumar</h1>
+                <p>Full Stack Developer | Frontend & Android Development | Java DSA & Spring Boot Expert</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#projects" class="btn btn-secondary">View My Work</a>
+                </div>
+            </div>
+            <!-- <div class="hero-image">
+                <img src="images/photo.jpg" alt="Sarvesh Kumar">
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2 class="section-title">Core Competencies</h2>
+        
+        <div class="skills-grid">
+            <div class="skill-card reveal">
+                <div class="skill-icon">🎨</div>
+                <h3>Frontend Development</h3>
+                <p>Creating responsive and interactive user interfaces with modern web technologies.</p>
+                <div class="skill-tags">
+                    <span class="tag">HTML5</span>
+                    <span class="tag">CSS3</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-icon">📱</div>
+                <h3>Android Development</h3>
+                <p>Building native Android applications with intuitive UI and robust functionality.</p>
+                <div class="skill-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Android SDK</span>
+                    <span class="tag">Flutter</span>
+                </div>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-icon">🧩</div>
+                <h3>Java DSA</h3>
+                <p>Strong foundation in Data Structures and Algorithms using Java for optimal solutions.</p>
+                <div class="skill-tags">
+                    <span class="tag">Arrays</span>
+                    <span class="tag">Linked Lists</span>
+                    <span class="tag">Trees</span>
+                </div>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-icon">⚙️</div>
+                <h3>Spring Boot</h3>
+                <p>Developing scalable backend applications with Spring Boot framework.</p>
+                <div class="skill-tags">
+                    <span class="tag">Spring MVC</span>
+                    <span class="tag">REST API</span>
+                    <span class="tag">Databases</span>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--primary); font-size: 1.5rem;">Technical Stack</h3>
+        <div class="tech-skills">
+            <div class="tech-item reveal">
+                <h4>Frontend</h4>
+                <p>HTML, CSS, JavaScript, Responsive Design, DOM Manipulation</p>
+            </div>
+
+            <div class="tech-item reveal">
+                <h4>Mobile</h4>
+                <p>Android Studio, Activities, Fragments, Services, Layouts</p>
+            </div>
+
+            <div class="tech-item reveal">
+                <h4>Backend</h4>
+                <p>Spring Boot, Spring MVC, REST APIs, JPA/Hibernate</p>
+            </div>
+
+            <div class="tech-item reveal">
+                <h4>Algorithms</h4>
+                <p>Sorting, Searching, Graph, Dynamic Programming, Recursion</p>
+            </div>
+
+            <div class="tech-item reveal">
+                <h4>Databases</h4>
+                <p>MySQL, PostgreSQL, Database Design, Queries</p>
+            </div>
+
+            <div class="tech-item reveal">
+                <h4>Tools & Platforms</h4>
+                <p>Git, GitHub, VS Code, Android Studio, IntelliJ IDEA</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="projects-container">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <h3>📱 Chat Application</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">A real-time Android chat application with user authentication and message synchronization across devices.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Android</span>
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <h3>💰 E-Commerce Platform</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Full-stack e-commerce solution with Spring Boot backend and responsive HTML/CSS/JS frontend.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">HTML/CSS</span>
+                            <span class="tech-badge">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <h3>🎯 Algorithm Visualizer</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Interactive web tool to visualize sorting and searching algorithms with step-by-step execution.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">Canvas API</span>
+                            <span class="tech-badge">DSA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content" style="margin-top: 3rem;">
+            <div class="about-text">
+                <h2>Who Am I?</h2>
+                <p>I'm Sarvesh Kumar, a passionate full-stack developer specializing in frontend design, Android development, and backend engineering. With expertise in Java, Spring Boot, and modern web technologies, I create applications that are both functional and visually appealing.</p>
+                <p>My journey in development has been driven by a commitment to writing clean, efficient code and delivering solutions that make a real impact. I'm particularly interested in solving complex problems through Data Structures and Algorithms.</p>
+                
+                <div class="about-features">
+                    <div class="feature">
+                        <div class="feature-icon">✨</div>
+                        <div class="feature-text">
+                            <h4>Clean Code</h4>
+                            <p>Writing maintainable and efficient code</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🚀</div>
+                        <div class="feature-text">
+                            <h4>Fast Delivery</h4>
+                            <p>Quick turnaround on projects</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎓</div>
+                        <div class="feature-text">
+                            <h4>Continuous Learning</h4>
+                            <p>Always updating skills and knowledge</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">💡</div>
+                        <div class="feature-text">
+                            <h4>Problem Solver</h4>
+                            <p>Creative solutions to complex problems</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="background: linear-gradient(135deg, #3b82f6, #f97316); padding: 2rem; border-radius: 1rem; color: white;">
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Let's Build Something Amazing</h3>
+                    <p style="margin-bottom: 1.5rem;">I'm always interested in hearing about new projects and opportunities. Whether you have a question or want to work together, feel free to reach out!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <h2>Let's Connect</h2>
+            <p>I'd love to hear from you. Get in touch and let's discuss how I can help with your next project.</p>
+            <div class="contact-links">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sarveshrajputmr@gmail.com" class="contact-btn">📧 Email</a>
+                <a href="https://www.linkedin.com/in/sarveshrajput/" class="contact-btn">💼 LinkedIn</a>
+                <a href="https://github.com/hardw0607" class="contact-btn">🐙 GitHub</a>
+                <a href="https://x.com/ISarveshrajput" class="contact-btn">🐦 Twitter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Sarvesh Kumar. All rights reserved. | Full Stack Developer</p>
+    </footer>
+
+    <script>
+        // Authentication System
+        const authModal = document.getElementById('authModal');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+
+        // Local storage for user data
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+
+        function openAuthModal(form) {
+            authModal.classList.add('active');
+            if (form === 'login') {
+                loginForm.classList.add('active-form');
+                signupForm.classList.remove('active-form');
+            } else {
+                signupForm.classList.add('active-form');
+                loginForm.classList.remove('active-form');
+            }
+        }
+
+        function closeAuthModal() {
+            authModal.classList.remove('active');
+        }
+
+        function switchAuthForm(form) {
+            if (form === 'login') {
+                loginForm.classList.add('active-form');
+                signupForm.classList.remove('active-form');
+            } else {
+                signupForm.classList.add('active-form');
+                loginForm.classList.remove('active-form');
+            }
+        }
+
+        function showMessage(form, message, type) {
+            const formElement = form === 'login' ? loginForm : signupForm;
+            const existingMessage = formElement.querySelector('.success-message, .error-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `${type}-message`;
+            messageDiv.textContent = message;
+            formElement.querySelector('form').insertBefore(messageDiv, formElement.querySelector('form').firstChild);
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageDiv.remove();
+                    if (form === 'signup') {
+                        switchAuthForm('login');
+                    }
+                }, 2000);
+            }
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirm').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+
+            // Validation
+            if (!name || name.length < 2) {
+                showMessage('signup', '❌ Name must be at least 2 characters long', 'error');
+                return;
+            }
+
+            if (!email || !isValidEmail(email)) {
+                showMessage('signup', '❌ Please enter a valid email address', 'error');
+                return;
+            }
+
+            if (!password || password.length < 6) {
+                showMessage('signup', '❌ Password must be at least 6 characters long', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showMessage('signup', '❌ Passwords do not match', 'error');
+                return;
+            }
+
+            if (!agreeTerms) {
+                showMessage('signup', '❌ You must agree to the Terms & Conditions', 'error');
+                return;
+            }
+
+            // Check if user already exists
+            if (users.find(u => u.email === email)) {
+                showMessage('signup', '❌ This email is already registered', 'error');
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                password: btoa(password), // Basic encoding (not secure for production)
+                createdAt: new Date().toLocaleString()
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            showMessage('signup', '✅ Account created successfully! Redirecting to login...', 'success');
+            document.getElementById('signupName').value = '';
+            document.getElementById('signupEmail').value = '';
+            document.getElementById('signupPassword').value = '';
+            document.getElementById('signupConfirm').value = '';
+            document.getElementById('agreeTerms').checked = false;
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            // Validation
+            if (!email || !isValidEmail(email)) {
+                showMessage('login', '❌ Please enter a valid email address', 'error');
+                return;
+            }
+
+            if (!password) {
+                showMessage('login', '❌ Please enter your password', 'error');
+                return;
+            }
+
+            // Find user
+            const user = users.find(u => u.email === email && u.password === btoa(password));
+
+            if (!user) {
+                showMessage('login', '❌ Invalid email or password', 'error');
+                return;
+            }
+
+            // Login successful
+            currentUser = {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                loginTime: new Date().toLocaleString()
+            };
+
+            if (rememberMe) {
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            }
+
+            showMessage('login', '✅ Login successful! Welcome back, ' + user.name + '!', 'success');
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('rememberMe').checked = false;
+
+            setTimeout(() => {
+                closeAuthModal();
+                updateNavForLoggedIn(user.name);
+            }, 2000);
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function updateNavForLoggedIn(userName) {
+            const nav = document.querySelector('nav ul');
+            const loginLink = nav.querySelector('a[onclick*="openAuthModal"]');
+            
+            if (loginLink) {
+                loginLink.textContent = '👤 ' + userName;
+                loginLink.onclick = () => {
+                    currentUser = null;
+                    localStorage.removeItem('currentUser');
+                    loginLink.textContent = 'Login';
+                    loginLink.onclick = function(e) { openAuthModal('login'); };
+                };
+            }
+        }
+
+        // Check if user was logged in on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            if (currentUser) {
+                updateNavForLoggedIn(currentUser.name);
+            }
+        });
+
+        // Close modal when clicking outside
+        authModal.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                closeAuthModal();
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Reveal animation on scroll
+        const reveals = document.querySelectorAll('.reveal');
+
+        function checkReveal() {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkReveal);
+        checkReveal(); // Initial check
+
+        // Active nav link
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.color = 'var(--secondary)';
+                } else {
+                    link.style.color = 'var(--text)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
